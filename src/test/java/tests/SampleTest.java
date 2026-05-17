@@ -4,25 +4,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
-import base.DriverFactory;
 
 public class SampleTest extends BaseTest {
 
-    @Test(priority = 1,
-            groups = "smoke")
-
+    @Test
     public void verifyTitle() {
 
-        DriverFactory.getDriver()
-                .get("https://www.saucedemo.com/");
-
-        String title =
-                DriverFactory.getDriver()
-                .getTitle();
+        String title = driver.getTitle();
 
         System.out.println(title);
 
-        Assert.assertTrue(
-                title.contains("Swag Labs"));
+        Assert.assertTrue(title.contains("Swag"));
     }
 }

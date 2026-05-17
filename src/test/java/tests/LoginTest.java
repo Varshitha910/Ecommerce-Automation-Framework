@@ -26,19 +26,19 @@ public class LoginTest extends BaseTest {
 
         LoggerUtils.info("Excel Data Read Successfully");
 
-        HomePage homePage = new HomePage();
+        HomePage homePage = new HomePage(driver);
 
         homePage.navigateToLogin();
 
         LoggerUtils.info("Navigated To Login Page");
 
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(driver);
 
         loginPage.login(email, password);
 
         LoggerUtils.info("Login Performed Successfully");
 
-        ScreenshotUtils.capture("LoginTest");
+        ScreenshotUtils.capture(driver, "LoginTest");
 
         LoggerUtils.info("Screenshot Captured");
 

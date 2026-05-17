@@ -1,60 +1,21 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
 
-import java.util.List;
+public class ProductPage {
 
-public class ProductPage extends BasePage {
+    WebDriver driver;
 
-    private By products =
-            By.className("inventory_item");
+    public ProductPage(WebDriver driver) {
 
-    private By cartIcon =
-            By.className("shopping_cart_link");
-
-    private By cartProduct =
-            By.className("inventory_item_name");
-
-    public void addProductToCart(String productName) {
-
-        List<WebElement> productList =
-                wait.until(
-                        ExpectedConditions
-                        .visibilityOfAllElementsLocatedBy(products));
-
-        for (WebElement product : productList) {
-
-            String name =
-                    product.findElement(
-                            By.className("inventory_item_name"))
-                            .getText();
-
-            if (name.equalsIgnoreCase(productName)) {
-
-                product.findElement(
-                        By.tagName("button"))
-                        .click();
-
-                break;
-            }
-        }
+        this.driver = driver;
     }
 
-    public void openCart() {
+    By addToCart = By.id("add-to-cart-sauce-labs-backpack");
 
-        wait.until(
-                ExpectedConditions
-                        .elementToBeClickable(cartIcon))
-                .click();
-    }
+    public void addProductToCart() {
 
-    public String getCartProductName() {
-
-        return wait.until(
-                ExpectedConditions
-                        .visibilityOfElementLocated(cartProduct))
-                .getText();
+        driver.findElement(addToCart).click();
     }
 }

@@ -6,27 +6,22 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
-import base.BaseTest;
+public class ScreenshotUtils {
 
-public class ScreenshotUtils extends BaseTest {
+    public static void capture(WebDriver driver, String screenshotName) {
 
-    public static String captureScreenshot(String fileName) {
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-        File src =
-                ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-        String path = "screenshots/" + fileName + ".png";
+        File dest = new File("Screenshots/" + screenshotName + ".png");
 
         try {
-
-            FileUtils.copyFile(src, new File(path));
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
+            FileUtils.copyFile(src, dest);
+            System.out.println("Screenshot saved successfully");
+        } 
+        catch (IOException e) {
+            System.out.println("Failed to save screenshot");
         }
-
-        return path;
     }
 }
