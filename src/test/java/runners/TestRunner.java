@@ -1,0 +1,27 @@
+package runners;
+
+import org.testng.annotations.Listeners;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import utils.TestListener;
+
+@Listeners(TestListener.class)
+
+@CucumberOptions(
+
+features = "src/test/resources/features",
+glue = "stepdefinitions",
+
+plugin = {
+        "pretty",
+        "html:target/cucumber-report.html"
+},
+
+monochrome = true
+
+)
+
+public class TestRunner extends AbstractTestNGCucumberTests {
+
+}
