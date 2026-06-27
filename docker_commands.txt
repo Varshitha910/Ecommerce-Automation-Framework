@@ -1,0 +1,4 @@
+docker --version
+docker pull selenium/standalone-chrome:4.21.0
+docker run -d -p 4444:4444 selenium/standalone-chrome:4.21.0
+docker ps
